@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.interview.models.User
 import com.example.interview.utilites.DATABASE_NAME
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 
 @Database(entities = [User::class], version = 1)
@@ -17,7 +18,7 @@ abstract class AppDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase{
+        fun getDatabase(@ApplicationContext context: Context): AppDatabase{
 
             return INSTANCE?: synchronized(this){
 

@@ -13,10 +13,13 @@ import com.example.interview.databinding.ActivityMainBinding
 import com.example.interview.models.User
 import com.example.interview.recyclerview.ViewAdapter
 import com.example.interview.utilites.TAG
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: ViewAdapter
@@ -31,11 +34,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
         supportActionBar?.hide()
         val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-            scope.launch {
-                viewModel.getUsers().collect {
-                        listAdapter(it)
-                }
+
+
+        scope.launch {
+            viewModel.getUsers().collect {
+                listAdapter(it)
             }
+        }
+
 
     }
 

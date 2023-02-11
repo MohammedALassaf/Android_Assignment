@@ -6,9 +6,10 @@ import com.example.interview.utilites.TAG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
 import kotlin.math.log
 
-class UserRepository(private val userDao: UserDao) {
+class UserRepository @Inject constructor(private val userDao: UserDao) {
 
     suspend fun insert(users: List<User>){
         userDao.insertUsers(users)
